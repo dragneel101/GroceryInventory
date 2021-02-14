@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="adminFind" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.adminFind">
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="954.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="271.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Items" wrappingWidth="462.7076825561028">
+               <font>
+                  <Font name="Century" size="64.0" />
+               </font>
+            </Text>
+            <Label layoutX="18.0" layoutY="124.0" prefHeight="74.0" prefWidth="176.0" text="Search By :">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="28.0" />
+               </font>
+            </Label>
+            <RadioButton layoutX="236.0" layoutY="161.0" mnemonicParsing="false" text="Name" />
+            <RadioButton layoutX="374.0" layoutY="161.0" mnemonicParsing="false" text="category" />
+            <RadioButton layoutX="524.0" layoutY="161.0" mnemonicParsing="false" text="Price" />
+            <Button layoutX="591.0" layoutY="602.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="154.0" text="select" />
+            <Button layoutX="782.0" layoutY="602.0" mnemonicParsing="false" onAction="#swapBack" prefHeight="39.0" prefWidth="150.0" text="Cancel" />
+            <TextField fx:id="txtSearch" layoutX="16.0" layoutY="207.0" prefHeight="37.0" prefWidth="692.0" />
+            <Button fx:id="btnsearch" layoutX="752.0" layoutY="205.0" mnemonicParsing="false" onAction="#actSearch" prefHeight="40.0" prefWidth="180.0" text="Search" />
+            <ListView fx:id="lstSearch" layoutX="18.0" layoutY="268.0" prefHeight="297.0" prefWidth="914.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

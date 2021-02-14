@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="adminPane" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.adminController">
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="954.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar layoutX="-11.0" layoutY="-8.0" prefHeight="38.0" prefWidth="982.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#exBtn" text="Close" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ListView fx:id="lstGroceries" layoutX="6.0" layoutY="72.0" onEditCancel="#editGroceries" onEditStart="#editGroceries" onMouseClicked="#infoGroceries" prefHeight="586.0" prefWidth="304.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="31.0" layoutX="14.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="296.0">
+               <fill>
+                  <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="1.0" startY="0.2038834951456311">
+                     <stops>
+                        <Stop color="#8fc1ff" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="35.0" prefHeight="11.0" prefWidth="290.0" text="Item List" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eaf5ff" height="453.0" layoutX="322.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" width="618.0" />
+            <Button fx:id="addItem" layoutX="343.0" layoutY="543.0" onAction="#addItem" prefHeight="37.0" prefWidth="108.0" text="+ Add New">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEdit" layoutX="512.0" layoutY="543.0" onAction="#editGroceries" prefHeight="37.0" prefWidth="98.0" text="Edit">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSave" layoutX="663.0" layoutY="543.0" onAction="#saveGroceries" prefHeight="37.0" prefWidth="98.0" text="Save">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="815.0" layoutY="543.0" onAction="#deleteItem" prefHeight="37.0" prefWidth="108.0" text="Delete">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="663.0" layoutY="613.0" onAction="#swapAdmin" prefHeight="37.0" prefWidth="98.0" text="Logout">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="815.0" layoutY="613.0" onAction="#exBtn" prefHeight="37.0" prefWidth="108.0" text="Exit">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="348.0" layoutY="132.0" text="Item Description :">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="422.0" layoutY="192.0" text="Item No. :">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtDescription" blendMode="SRC_ATOP" editable="true" layoutX="521.0" layoutY="127.0" prefHeight="31.0" prefWidth="284.0" text="" />
+            <TextField fx:id="txtItemNo" blendMode="SRC_ATOP" editable="true" layoutX="521.0" layoutY="187.0" prefHeight="31.0" prefWidth="284.0" text="" />
+            <Label layoutX="378.0" layoutY="251.0" text="Temperature :">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtTemperature" blendMode="SRC_ATOP" editable="true" layoutX="524.0" layoutY="246.0" prefHeight="31.0" prefWidth="98.0" text="">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="421.0" layoutY="314.0" text="Location :">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="422.0" layoutY="366.0" text="Quantity :">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="442.0" layoutY="424.0" text="Price : $">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtLocation" blendMode="SRC_ATOP" editable="true" layoutX="524.0" layoutY="309.0" prefHeight="31.0" prefWidth="98.0" text="">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtQuantity" blendMode="SRC_ATOP" editable="true" layoutX="524.0" layoutY="361.0" prefHeight="31.0" prefWidth="98.0" text="">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPrice" blendMode="SRC_ATOP" editable="true" layoutX="524.0" layoutY="419.0" prefHeight="31.0" prefWidth="98.0" text="">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="631.0" layoutY="251.0" text="C">
+               <font>
+                  <Font name="Britannic Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnClear" layoutX="512.0" layoutY="613.0" mnemonicParsing="false" onAction="#clearInfo" prefHeight="36.0" prefWidth="98.0" text="Clear">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

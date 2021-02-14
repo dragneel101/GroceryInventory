@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="findPane" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.findController">
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="954.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="312.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Items" wrappingWidth="398.3896484375">
+               <font>
+                  <Font name="Century" size="54.0" />
+               </font>
+            </Text>
+            <Label layoutX="16.0" layoutY="67.0" prefHeight="74.0" prefWidth="176.0" text="Search By :">
+               <font>
+                  <Font name="Lucida Calligraphy Italic" size="28.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="toggleName" layoutX="225.0" layoutY="104.0" mnemonicParsing="false" selected="true" text="Name">
+               <toggleGroup>
+                  <ToggleGroup fx:id="search" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="togglePrice" layoutX="533.0" layoutY="104.0" mnemonicParsing="false" text="Price" toggleGroup="$search" />
+            <Button layoutX="570.0" layoutY="593.0" mnemonicParsing="false" onAction="#appendFile" prefHeight="47.0" prefWidth="132.0" text="select" />
+            <Button layoutX="786.0" layoutY="594.0" mnemonicParsing="false" onAction="#swapBack" prefHeight="46.0" prefWidth="132.0" text="Cancel" />
+            <TextField fx:id="txtSearch" layoutX="13.0" layoutY="154.0" prefHeight="39.0" prefWidth="719.0" />
+            <Button fx:id="btnsearch" layoutX="763.0" layoutY="151.0" mnemonicParsing="false" onAction="#actSearch" prefHeight="45.0" prefWidth="165.0" text="Search" />
+            <ListView fx:id="lstSearch" layoutX="16.0" layoutY="206.0" onMouseClicked="#findIndex" prefHeight="348.0" prefWidth="547.0" />
+            <ListView fx:id="lstRate" layoutX="563.0" layoutY="206.0" prefHeight="348.0" prefWidth="372.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
