@@ -27,3 +27,7 @@ web/.env
 
 # Maven build output
 web/target/
+
+# Claude Code files
+.claude/
+CLAUDE.md
