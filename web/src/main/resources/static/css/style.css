@@ -1,0 +1,43 @@
+/* ── Global ───────────────────────────────────────────────────── */
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Navbar ───────────────────────────────────────────────────── */
+.navbar {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ── Stat cards ───────────────────────────────────────────────── */
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ── Tables ───────────────────────────────────────────────────── */
+.table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6c757d;
+}
+
+/* ── Receipt ──────────────────────────────────────────────────── */
+.receipt-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ── Cards ────────────────────────────────────────────────────── */
+.card {
+    border-radius: 10px;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+    border-radius: 6px;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory — Employee Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-success px-4">
+    <span class="navbar-brand fw-bold"><i class="bi bi-basket2-fill me-2"></i>Grocery Inventory</span>
+    <div class="d-flex align-items-center gap-3">
+        <span class="text-white"><i class="bi bi-person-badge me-1"></i>Employee Panel</span>
+        <a th:href="@{/admin/search}" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-search me-1"></i>Search
+        </a>
+        <a th:href="@{/logout}" class="btn btn-light btn-sm">
+            <i class="bi bi-box-arrow-right me-1"></i>Logout
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid py-4 px-4">
+
+    <!-- Flash message -->
+    <div th:if="${successMsg}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-1"></i>
+        <span th:text="${successMsg}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <!-- Stats cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body d-flex align-items-center gap-3">
+                    <div class="stat-icon bg-success-subtle text-success rounded-3 p-3">
+                        <i class="bi bi-box-seam fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small">Total Items</div>
+                        <div class="fs-4 fw-bold" th:text="${totalItems}">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body d-flex align-items-center gap-3">
+                    <div class="stat-icon bg-primary-subtle text-primary rounded-3 p-3">
+                        <i class="bi bi-currency-dollar fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small">Inventory Value</div>
+                        <div class="fs-4 fw-bold">$<span th:text="${totalValue}">0.00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body d-flex align-items-center gap-3">
+                    <div class="stat-icon bg-warning-subtle text-warning rounded-3 p-3">
+                        <i class="bi bi-exclamation-triangle fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small">Low Stock (&lt;5)</div>
+                        <div class="fs-4 fw-bold" th:text="${lowStockCount}">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body d-flex align-items-center gap-3">
+                    <div class="stat-icon bg-info-subtle text-info rounded-3 p-3">
+                        <i class="bi bi-receipt fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small">Transactions</div>
+                        <div class="fs-4 fw-bold" th:text="${transactionCount}">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Low stock alert -->
+    <div th:if="${lowStockCount > 0}" class="alert alert-warning d-flex align-items-center mb-3">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <span>
+            <strong th:text="${lowStockCount}">0</strong> item(s) are running low:
+            <span th:each="i, s : ${lowStockItems}">
+                <strong th:text="${i.description}"></strong> (<span th:text="${i.quantity}"></span> left)<span th:if="!${s.last}">, </span>
+            </span>
+        </span>
+    </div>
+
+    <!-- Item list card -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+            <h5 class="mb-0 fw-bold"><i class="bi bi-list-ul me-2 text-success"></i>Item List</h5>
+            <a th:href="@{/admin/item/new}" class="btn btn-success btn-sm">
+                <i class="bi bi-plus-lg me-1"></i>Add New Item
+            </a>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Description</th>
+                            <th>Item No.</th>
+                            <th>Category</th>
+                            <th>Temp (°C)</th>
+                            <th>Location</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${#lists.isEmpty(items)}">
+                            <td colspan="8" class="text-center text-muted py-4">No items in inventory. Add one!</td>
+                        </tr>
+                        <tr th:each="item : ${items}" th:classappend="${item.quantity < 5} ? 'table-warning' : ''">
+                            <td class="fw-semibold" th:text="${item.description}"></td>
+                            <td><span class="badge bg-secondary" th:text="${item.itemNumber}"></span></td>
+                            <td><span class="badge bg-success-subtle text-success border border-success-subtle" th:text="${item.category}"></span></td>
+                            <td th:text="${item.temperature} + '°C'"></td>
+                            <td th:text="${item.location}"></td>
+                            <td>
+                                <span th:if="${item.quantity < 5}" class="badge bg-danger" th:text="${item.quantity}"></span>
+                                <span th:if="${item.quantity >= 5}" th:text="${item.quantity}"></span>
+                            </td>
+                            <td th:text="'$' + ${#numbers.formatDecimal(item.price, 1, 2)}"></td>
+                            <td class="text-center">
+                                <a th:href="@{'/admin/item/' + ${item.id} + '/edit'}" class="btn btn-outline-primary btn-sm me-1">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form th:action="@{'/admin/item/' + ${item.id} + '/delete'}" method="post" class="d-inline"
+                                      onsubmit="return confirm('Delete this item?')">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

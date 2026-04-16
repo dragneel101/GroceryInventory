@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(java *)",
+      "Bash(mvn -version)",
+      "Bash(gradle -version)",
+      "Bash(where mvn *)",
+      "Bash(where gradle *)",
+      "Bash(code --version)",
+      "Bash(code --list-extensions)",
+      "Read(//c/Users/raish/AppData/Local/Programs//**)",
+      "Read(//c/Program Files//**)",
+      "Bash(scoop --version)",
+      "Bash(choco --version)"
+    ]
+  },
+  "disabledMcpjsonServers": [
+    "code-review-graph"
+  ]
+}
