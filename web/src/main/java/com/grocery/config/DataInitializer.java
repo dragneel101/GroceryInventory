@@ -5,6 +5,7 @@ import com.grocery.model.Item;
 import com.grocery.repository.AppUserRepository;
 import com.grocery.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,18 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Value("${seed.admin.username}")
+    private String adminUsername;
+
+    @Value("${seed.admin.password}")
+    private String adminPassword;
+
+    @Value("${seed.customer.username}")
+    private String customerUsername;
+
+    @Value("${seed.customer.password}")
+    private String customerPassword;
+
     @Override
     public void run(String... args) {
         seedUsers();
@@ -31,14 +44,14 @@ public class DataInitializer implements CommandLineRunner {
         if (userRepository.count() > 0) return;
 
         AppUser employee = new AppUser();
-        employee.setUsername("admin");
-        employee.setPassword(passwordEncoder.encode("admin123"));
+        employee.setUsername(adminUsername);
+        employee.setPassword(passwordEncoder.encode(adminPassword));
         employee.setRole("ROLE_EMPLOYEE");
         userRepository.save(employee);
 
         AppUser customer = new AppUser();
-        customer.setUsername("customer");
-        customer.setPassword(passwordEncoder.encode("customer123"));
+        customer.setUsername(customerUsername);
+        customer.setPassword(passwordEncoder.encode(customerPassword));
         customer.setRole("ROLE_CUSTOMER");
         userRepository.save(customer);
     }
